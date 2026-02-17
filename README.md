@@ -4,13 +4,26 @@ Hands-on Linux, Docker, Networking, FastAPI & CI/CD practice lab — learn produ
 
 ## Overview
 
-A complete **DevOps + Backend Engineering Bootcamp** curriculum. Every section follows a structured learning path:
+Two complete learning tracks — **Learn Python** and **Production Engineering Bootcamp**. Every section follows a structured learning path:
 
 > **Theory → Beginner Practice → Intermediate Practice → Advanced Debug Lab → Production Simulation**
 
 By the end you will have built `practical-production-service` — a fully containerized, tested, monitored, and CI/CD-deployed Python API — from scratch.
 
-## Curriculum
+## Learn Python Guide
+
+Start here if you're new to Python or want to solidify fundamentals before diving into production engineering.
+
+| # | Section | Topics |
+|---|---------|--------|
+| 1 | [Foundations](docs/python-guide/01-foundations.md) | Variables, types, loops, functions, lists, dicts, sets, clean code |
+| 2 | [Core Python Skills](docs/python-guide/02-core-python-skills.md) | OOP, classes, modules, virtual environments, error handling |
+| 3 | [Debugging (Superpower)](docs/python-guide/03-debugging.md) | Stack traces, variable tracing, pdb, logic errors, refactoring |
+| 4 | [Data & APIs](docs/python-guide/04-data-and-apis.md) | CSV, JSON, HTTP requests, external APIs, edge cases |
+
+See the [Python Guide README](docs/python-guide/README.md) for the full learning path and schedule.
+
+## Production Engineering Curriculum
 
 | # | Section | Topics |
 |---|---------|--------|
