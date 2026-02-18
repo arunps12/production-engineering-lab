@@ -29,6 +29,11 @@
 | 6 | CI/CD Automation | [06-ci-cd-automation.md](06-ci-cd-automation.md) |
 | 7 | Monitoring & Observability | [07-monitoring-observability.md](07-monitoring-observability.md) |
 | 8 | Final Capstone | [08-capstone-project.md](08-capstone-project.md) |
+| 9 | Git & Version Control | [09-git-version-control.md](09-git-version-control.md) |
+| 10 | Database Fundamentals | [10-database-fundamentals.md](10-database-fundamentals.md) |
+| 11 | Security Fundamentals | [11-security-fundamentals.md](11-security-fundamentals.md) |
+| 12 | Cloud & Infrastructure Basics | [12-cloud-infrastructure-basics.md](12-cloud-infrastructure-basics.md) |
+| 13 | Nginx & Reverse Proxy | [13-nginx-reverse-proxy.md](13-nginx-reverse-proxy.md) |
 
 ---
 
@@ -79,6 +84,9 @@ practical-production-service/
 | 6 | Section 6 (CI/CD) |
 | 7 | Section 7 (Monitoring) |
 | 8 | Section 8 (Capstone) — full integration |
+| 9 | Section 9 (Git) + Section 10 (Databases) |
+| 10 | Section 11 (Security) + Section 12 (Cloud) |
+| 11 | Section 13 (Nginx) + Review & polish |
 
 ---
 

@@ -22,7 +22,10 @@ practice/
 │   │   └── E_expense_tracker    Part E: Mini-Project
 │   ├── 02-core-python-skills/ (16 files — classes, modules, decorators)
 │   ├── 03-debugging/          (14 files — stack traces, pdb, logging)
-│   └── 04-data-and-apis/      (15 files — file I/O, CSV, JSON, APIs)
+│   ├── 04-data-and-apis/      (15 files — file I/O, CSV, JSON, APIs)
+│   ├── 05-testing/            (5 files — pytest, fixtures, mocking, TDD)
+│   ├── 06-concurrency/        (6 files — threading, asyncio, multiprocessing)
+│   └── 07-system-automation/  (5 files — pathlib, subprocess, argparse, CLI)
 │
 └── curriculum/            ← Production engineering exercises
     ├── 00-uv-environment/     (6 files — uv, virtual envs, pyproject.toml)
@@ -34,12 +37,17 @@ practice/
     ├── 05-docker/             (6 files — Dockerfile, compose, debugging)
     ├── 06-cicd/               (4 files — GitHub Actions, pipelines)
     ├── 07-monitoring/         (4 files — logging, Prometheus, Grafana)
-    └── 08-capstone/           (16 files — complete production service)
-        ├── src/appcore/           Application code scaffold
-        ├── tests/                 Test stubs
-        ├── Dockerfile             Multi-stage build template
-        ├── docker-compose.yml     Full stack compose
-        └── verify.sh              Verification script
+    ├── 08-capstone/           (16 files — complete production service)
+    │   ├── src/appcore/           Application code scaffold
+    │   ├── tests/                 Test stubs
+    │   ├── Dockerfile             Multi-stage build template
+    │   ├── docker-compose.yml     Full stack compose
+    │   └── verify.sh              Verification script
+    ├── 09-git-version-control/  (3 files — branching, hooks, workflows)
+    ├── 10-database/             (4 files — SQL, Redis, migrations, Docker)
+    ├── 11-security/             (3 files — JWT, RBAC, secrets, validation)
+    ├── 12-cloud-infrastructure/ (4 files — Terraform, health checks, IaC)
+    └── 13-nginx/                (5 files — config, proxy, load balancing)
 ```
 
 ## Exercise Naming Convention
@@ -59,6 +67,9 @@ practice/
 | Python Guide: Core Skills | 16 | 16 |
 | Python Guide: Debugging | 14 | 14 |
 | Python Guide: Data & APIs | 15 | 15 |
+| Python Guide: Testing | 5 | 17 |
+| Python Guide: Concurrency | 6 | 16 |
+| Python Guide: System Automation | 5 | 15 |
 | Curriculum: uv Environment | 6 | 24 |
 | Curriculum: Linux | 7 | 51 |
 | Curriculum: Networking | 8 | 27 |
@@ -68,7 +79,12 @@ practice/
 | Curriculum: CI/CD | 4 | 18 |
 | Curriculum: Monitoring | 4 | 19 |
 | Curriculum: Capstone | 16 | 16 |
-| **Total** | **133** | **~283** |
+| Curriculum: Git & Version Control | 3 | 16 |
+| Curriculum: Database | 4 | 19 |
+| Curriculum: Security | 3 | 18 |
+| Curriculum: Cloud Infrastructure | 4 | 18 |
+| Curriculum: Nginx | 5 | 18 |
+| **Total** | **168** | **~380** |
 
 > Some sections group multiple exercises into a single file (e.g., Linux bash exercises are grouped by range).
 

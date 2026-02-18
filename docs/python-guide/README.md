@@ -26,6 +26,13 @@ variables              OOP                    stack traces           CSV / JSON
 loops                  modules                variable tracing       HTTP requests
 functions              virtual envs           logic errors           external APIs
 lists/dicts/sets       error handling         refactoring            edge cases
+
+                  Section 5              Section 6              Section 7
+              Testing (pytest)  →   Concurrency & Async  →  System Automation
+              test design            threading                pathlib / subprocess
+              fixtures               multiprocessing          argparse / CLI tools
+              mocking                asyncio / await          file operations
+              TDD / coverage         GIL / event loops        deployment scripts
 ```
 
 ---
@@ -38,6 +45,9 @@ lists/dicts/sets       error handling         refactoring            edge cases
 | 2 | Core Python Skills | [02-core-python-skills.md](02-core-python-skills.md) |
 | 3 | Debugging (Superpower) | [03-debugging.md](03-debugging.md) |
 | 4 | Data & APIs | [04-data-and-apis.md](04-data-and-apis.md) |
+| 5 | Testing with pytest | [05-testing-with-pytest.md](05-testing-with-pytest.md) |
+| 6 | Concurrency & Async | [06-concurrency-async.md](06-concurrency-async.md) |
+| 7 | System Automation & Scripting | [07-system-automation-scripting.md](07-system-automation-scripting.md) |
 
 ---
 
@@ -53,6 +63,12 @@ lists/dicts/sets       error handling         refactoring            edge cases
 | 6 | Section 3C-3E | Logic errors, refactoring, real-world debugging |
 | 7 | Section 4A-4B | Files, CSV, JSON |
 | 8 | Section 4C-4E | HTTP APIs, edge cases, mini-project |
+| 9 | Section 5A-5B | pytest basics, fixtures, assertions |
+| 10 | Section 5C-5E | Mocking, TDD, coverage |
+| 11 | Section 6A-6B | Threading, ThreadPoolExecutor, asyncio basics |
+| 12 | Section 6C-6E | Producer-consumer, semaphores, debugging concurrency |
+| 13 | Section 7A-7B | pathlib, subprocess, file backup, argparse |
+| 14 | Section 7C-7E | System monitor, deployment automation, DevOps CLI |
 
 ---
 
@@ -72,6 +88,9 @@ lists/dicts/sets       error handling         refactoring            edge cases
 - **Debug any error** — read stack traces, trace variables, fix logic bugs
 - Work with files (CSV, JSON) and call external REST APIs
 - Handle edge cases, errors, and unexpected input gracefully
+- Write and run **tests** with pytest — fixtures, mocking, parametrize, TDD
+- Build **concurrent** programs — threads, async/await, multiprocessing
+- Automate tasks with **system scripting** — file management, subprocess, CLI tools
 
 ---
 

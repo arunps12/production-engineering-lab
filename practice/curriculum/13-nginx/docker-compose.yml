@@ -1,0 +1,29 @@
+# Section 13 — Nginx: Docker Compose
+# Guide: docs/curriculum/13-nginx-reverse-proxy.md
+
+# TODO: Uncomment and use
+
+# services:
+#   app:
+#     build: ../08-capstone
+#     expose:
+#       - "8000"
+#
+#   # Exercise 13.C.1 — Multiple app instances for load balancing
+#   # app2:
+#   #   build: ../08-capstone
+#   #   expose:
+#   #     - "8000"
+#   #   environment:
+#   #     INSTANCE_ID: "2"
+#
+#   nginx:
+#     image: nginx:latest
+#     ports:
+#       - "80:80"
+#       # - "443:443"    # Uncomment for SSL
+#     volumes:
+#       - ./nginx-proxy.conf:/etc/nginx/nginx.conf:ro
+#       # - ./certs:/etc/nginx/certs:ro  # SSL certs
+#     depends_on:
+#       - app
