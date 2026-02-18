@@ -42,11 +42,18 @@ practice/
     ├── 10-security/             (3 files — JWT, RBAC, secrets, validation)
     ├── 11-cloud-infrastructure/ (4 files — Terraform, health checks, IaC)
     ├── 12-nginx/                (5 files — config, proxy, load balancing)
-    └── 13-capstone/             (16 files — complete production service)
-        ├── src/appcore/           Application code scaffold
-        ├── tests/                 Test stubs
+    └── 13-capstone/             (27 files — complete production service)
+        ├── src/appcore/api/       FastAPI app, routes, auth, rate limiter
+        ├── src/appcore/db/        SQLite, repository, cache stubs
+        ├── src/appcore/models/    Prediction logic
+        ├── src/appcore/monitoring/ Prometheus metrics
+        ├── tests/                 test_health, test_predict, test_db, test_auth
+        ├── configs/nginx.conf     Nginx reverse proxy template
+        ├── scripts/health_check.sh Deployment verification
+        ├── infra/terraform/       IaC config template
+        ├── .env.example           Environment template
         ├── Dockerfile             Multi-stage build template
-        ├── docker-compose.yml     Full stack compose
+        ├── docker-compose.yml     Full stack compose (app+nginx+redis)
         └── verify.sh              Verification script
 ```
 
@@ -83,8 +90,8 @@ practice/
 | Curriculum: Security | 3 | 18 |
 | Curriculum: Cloud Infrastructure | 4 | 18 |
 | Curriculum: Nginx | 5 | 18 |
-| Curriculum: Capstone | 16 | 16 |
-| **Total** | **168** | **~380** |
+| Curriculum: Capstone | 27 | 27 |
+| **Total** | **179** | **~391** |
 
 > Some sections group multiple exercises into a single file (e.g., Linux bash exercises are grouped by range).
 

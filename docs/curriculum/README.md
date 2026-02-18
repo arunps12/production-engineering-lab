@@ -49,21 +49,38 @@ practical-production-service/
 │       ├── logic.py
 │       ├── api/
 │       │   ├── app.py
-│       │   └── routes.py
+│       │   ├── routes.py
+│       │   ├── schemas.py
+│       │   ├── dependencies.py
+│       │   ├── auth.py             # API key auth (Section 10)
+│       │   ├── security.py         # Key verification (Section 10)
+│       │   └── rate_limiter.py     # Rate limiting (Section 10)
+│       ├── db/
+│       │   ├── database.py         # SQLite manager (Section 09)
+│       │   ├── repository.py       # CRUD operations (Section 09)
+│       │   └── cache.py            # Redis cache (Section 09)
 │       ├── config/
 │       │   └── settings.py
 │       └── monitoring/
 │           └── metrics.py
 │
 ├── configs/
-│   └── config.yaml
+│   ├── config.yaml
+│   └── nginx.conf                  # Reverse proxy (Section 12)
+│
+├── infra/
+│   └── terraform/
+│       └── main.tf                 # IaC config (Section 11)
 │
 ├── tests/
 ├── scripts/
 │   ├── run_local.sh
-│   └── deploy.sh
+│   ├── deploy.sh
+│   └── health_check.sh            # Health verification (Section 11)
 ├── Dockerfile
 ├── docker-compose.yml
+├── .env.example                    # Environment template (Section 10)
+├── .gitignore                      # Git rules (Section 08)
 ├── .github/workflows/ci.yml
 ├── pyproject.toml
 ├── uv.lock
