@@ -1,0 +1,30 @@
+# Exercise 0.E.2 — Reproducible CI Build
+# Guide: docs/curriculum/00-uv-python-environment.md
+# TODO: Complete this GitHub Actions workflow
+
+name: CI
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # TODO: Install uv
+      # - name: Install uv
+      #   run: curl -LsSf https://astral.sh/uv/install.sh | sh
+
+      # TODO: Set up Python
+      # - name: Set up Python
+      #   uses: actions/setup-python@v5
+      #   with:
+      #     python-version: "3.12"
+
+      # TODO: Install dependencies
+      # - name: Install dependencies
+      #   run: uv sync
+
+      # TODO: Run tests
+      # - name: Run tests
+      #   run: uv run pytest -v
