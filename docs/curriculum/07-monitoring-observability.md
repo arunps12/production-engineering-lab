@@ -996,4 +996,4 @@ histogram_quantile(0.95, rate(prediction_duration_seconds_bucket[5m]))
 
 ---
 
-*Next: [Section 8 — Final Capstone](08-capstone-project.md)*
+*Next: [Section 8 — Git & Version Control](08-git-version-control.md)*

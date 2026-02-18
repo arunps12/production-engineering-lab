@@ -37,17 +37,17 @@ practice/
     ├── 05-docker/             (6 files — Dockerfile, compose, debugging)
     ├── 06-cicd/               (4 files — GitHub Actions, pipelines)
     ├── 07-monitoring/         (4 files — logging, Prometheus, Grafana)
-    ├── 08-capstone/           (16 files — complete production service)
-    │   ├── src/appcore/           Application code scaffold
-    │   ├── tests/                 Test stubs
-    │   ├── Dockerfile             Multi-stage build template
-    │   ├── docker-compose.yml     Full stack compose
-    │   └── verify.sh              Verification script
-    ├── 09-git-version-control/  (3 files — branching, hooks, workflows)
-    ├── 10-database/             (4 files — SQL, Redis, migrations, Docker)
-    ├── 11-security/             (3 files — JWT, RBAC, secrets, validation)
-    ├── 12-cloud-infrastructure/ (4 files — Terraform, health checks, IaC)
-    └── 13-nginx/                (5 files — config, proxy, load balancing)
+    ├── 08-git-version-control/  (3 files — branching, hooks, workflows)
+    ├── 09-database/             (4 files — SQL, Redis, migrations, Docker)
+    ├── 10-security/             (3 files — JWT, RBAC, secrets, validation)
+    ├── 11-cloud-infrastructure/ (4 files — Terraform, health checks, IaC)
+    ├── 12-nginx/                (5 files — config, proxy, load balancing)
+    └── 13-capstone/             (16 files — complete production service)
+        ├── src/appcore/           Application code scaffold
+        ├── tests/                 Test stubs
+        ├── Dockerfile             Multi-stage build template
+        ├── docker-compose.yml     Full stack compose
+        └── verify.sh              Verification script
 ```
 
 ## Exercise Naming Convention
@@ -78,12 +78,12 @@ practice/
 | Curriculum: Docker | 6 | 23 |
 | Curriculum: CI/CD | 4 | 18 |
 | Curriculum: Monitoring | 4 | 19 |
-| Curriculum: Capstone | 16 | 16 |
 | Curriculum: Git & Version Control | 3 | 16 |
 | Curriculum: Database | 4 | 19 |
 | Curriculum: Security | 3 | 18 |
 | Curriculum: Cloud Infrastructure | 4 | 18 |
 | Curriculum: Nginx | 5 | 18 |
+| Curriculum: Capstone | 16 | 16 |
 | **Total** | **168** | **~380** |
 
 > Some sections group multiple exercises into a single file (e.g., Linux bash exercises are grouped by range).

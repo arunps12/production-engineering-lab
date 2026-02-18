@@ -28,12 +28,12 @@
 | 5 | Docker & Containerization | [05-docker-containerization.md](05-docker-containerization.md) |
 | 6 | CI/CD Automation | [06-ci-cd-automation.md](06-ci-cd-automation.md) |
 | 7 | Monitoring & Observability | [07-monitoring-observability.md](07-monitoring-observability.md) |
-| 8 | Final Capstone | [08-capstone-project.md](08-capstone-project.md) |
-| 9 | Git & Version Control | [09-git-version-control.md](09-git-version-control.md) |
-| 10 | Database Fundamentals | [10-database-fundamentals.md](10-database-fundamentals.md) |
-| 11 | Security Fundamentals | [11-security-fundamentals.md](11-security-fundamentals.md) |
-| 12 | Cloud & Infrastructure Basics | [12-cloud-infrastructure-basics.md](12-cloud-infrastructure-basics.md) |
-| 13 | Nginx & Reverse Proxy | [13-nginx-reverse-proxy.md](13-nginx-reverse-proxy.md) |
+| 8 | Git & Version Control | [08-git-version-control.md](08-git-version-control.md) |
+| 9 | Database Fundamentals | [09-database-fundamentals.md](09-database-fundamentals.md) |
+| 10 | Security Fundamentals | [10-security-fundamentals.md](10-security-fundamentals.md) |
+| 11 | Cloud & Infrastructure Basics | [11-cloud-infrastructure-basics.md](11-cloud-infrastructure-basics.md) |
+| 12 | Nginx & Reverse Proxy | [12-nginx-reverse-proxy.md](12-nginx-reverse-proxy.md) |
+| 13 | Final Capstone | [13-capstone-project.md](13-capstone-project.md) |
 
 ---
 
@@ -72,7 +72,7 @@ practical-production-service/
 
 ---
 
-## Suggested 8-Week Plan
+## Suggested 11-Week Plan
 
 | Week | Focus |
 |------|-------|
@@ -83,10 +83,10 @@ practical-production-service/
 | 5 | Section 5 (Docker) |
 | 6 | Section 6 (CI/CD) |
 | 7 | Section 7 (Monitoring) |
-| 8 | Section 8 (Capstone) — full integration |
-| 9 | Section 9 (Git) + Section 10 (Databases) |
-| 10 | Section 11 (Security) + Section 12 (Cloud) |
-| 11 | Section 13 (Nginx) + Review & polish |
+| 8 | Section 8 (Git) + Section 9 (Databases) |
+| 9 | Section 10 (Security) + Section 11 (Cloud) |
+| 10 | Section 12 (Nginx) |
+| 11 | Section 13 (Capstone) — full integration |
 
 ---
 
