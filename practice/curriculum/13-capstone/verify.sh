@@ -4,55 +4,98 @@
 # Guide: docs/curriculum/13-capstone-project.md
 #
 # Run this script to verify your capstone project is complete.
+# Covers ALL 13 sections of the curriculum.
 # =============================================================================
 
 set -e
 
-echo "=== Capstone Verification ==="
+PASS=0
+FAIL=0
 
-# 1. Check project structure
-echo "Checking project structure..."
-for f in pyproject.toml Dockerfile docker-compose.yml \
+check() {
+    local desc="$1"
+    shift
+    if "$@" > /dev/null 2>&1; then
+        echo "  ✓ $desc"
+        ((PASS++))
+    else
+        echo "  ✗ $desc"
+        ((FAIL++))
+    fi
+}
+
+echo "=== Capstone Verification ==="
+echo ""
+
+# --- Section 0-7: Core Files ---
+echo "[Sections 0-7] Core project structure..."
+for f in pyproject.toml Dockerfile docker-compose.yml .dockerignore \
          src/appcore/api/app.py src/appcore/api/routes.py \
          src/appcore/api/schemas.py src/appcore/api/dependencies.py \
+         src/appcore/api/middleware.py \
          src/appcore/models/predict.py src/appcore/monitoring/metrics.py \
-         tests/test_health.py tests/test_predict.py tests/test_metrics.py; do
-    if [ ! -f "$f" ]; then
-        echo "  MISSING: $f"
-    else
-        echo "  OK: $f"
-    fi
+         src/appcore/monitoring/logging.py \
+         tests/test_health.py tests/test_predict.py tests/test_metrics.py \
+         prometheus.yml; do
+    check "$f exists" test -f "$f"
 done
 
-# 2. Run tests
+# --- Section 6: CI/CD ---
 echo ""
-echo "Running tests..."
-# TODO: uv run pytest tests/ -v
+echo "[Section 06] CI/CD pipeline..."
+check ".github/workflows/ci.yml exists" test -f ".github/workflows/ci.yml"
 
-# 3. Run linter
+# --- Section 8: Git ---
 echo ""
-echo "Running linter..."
-# TODO: uv run ruff check src/ tests/
+echo "[Section 08] Git workflow..."
+check ".gitignore exists" test -f ".gitignore"
+check "Git repository initialized" test -d ".git"
+# TODO: check ".git/hooks/pre-commit exists" test -f ".git/hooks/pre-commit"
+# TODO: Verify at least one version tag: git tag | grep -q "^v"
 
-# 4. Build Docker image
+# --- Section 9: Database ---
 echo ""
-echo "Building Docker image..."
-# TODO: docker build -t practical-production-service .
+echo "[Section 09] Database layer..."
+for f in src/appcore/db/__init__.py src/appcore/db/database.py \
+         src/appcore/db/repository.py; do
+    check "$f exists" test -f "$f"
+done
+# TODO: check "tests/test_db.py exists" test -f "tests/test_db.py"
 
-# 5. Start stack
+# --- Section 10: Security ---
 echo ""
-echo "Starting full stack..."
-# TODO: docker compose up -d
+echo "[Section 10] Security..."
+for f in src/appcore/api/auth.py src/appcore/api/security.py \
+         src/appcore/api/rate_limiter.py .env.example; do
+    check "$f exists" test -f "$f"
+done
+# TODO: check "tests/test_auth.py exists" test -f "tests/test_auth.py"
 
-# 6. Health check
+# --- Section 11: Infrastructure ---
 echo ""
-echo "Checking health..."
-# TODO: sleep 5 && curl -f http://localhost:8000/health
+echo "[Section 11] Infrastructure..."
+check "scripts/health_check.sh exists" test -f "scripts/health_check.sh"
+check "health_check.sh is executable" test -x "scripts/health_check.sh"
+# TODO: check "infra/terraform/main.tf exists" test -f "infra/terraform/main.tf"
 
-# 7. Metrics check
+# --- Section 12: Nginx ---
 echo ""
-echo "Checking metrics..."
-# TODO: curl -s http://localhost:8000/metrics | head -5
+echo "[Section 12] Nginx reverse proxy..."
+check "configs/nginx.conf exists" test -f "configs/nginx.conf"
+
+# --- Build & Runtime Checks ---
+echo ""
+echo "[Build] Docker build & stack..."
+# TODO: Uncomment when ready to test:
+# check "Docker image builds" docker build -t practical-production-service .
+# check "Stack starts" docker compose up -d
+# sleep 5
+# check "Health via Nginx (port 80)" curl -sf http://localhost/health
+# check "Metrics endpoint" curl -sf http://localhost:8000/metrics
+# check "Auth rejects missing key" bash -c '[ "$(curl -s -o /dev/null -w "%{http_code}" http://localhost/predict -X POST -H "Content-Type: application/json" -d "{\"text\":\"test\"}")" = "403" ]'
+# check "Nginx health" curl -sf http://localhost/nginx-health
+# docker compose down
 
 echo ""
-echo "=== Verification Complete ==="
+echo "=== Results: $PASS passed, $FAIL failed ==="
+[ "$FAIL" -eq 0 ] && echo "All checks passed!" || echo "Some checks failed — review above."
