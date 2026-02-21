@@ -1856,5 +1856,6 @@ By completing this capstone, you've demonstrated:
 ---
 
 *Previous: [Section 12 — Nginx & Reverse Proxy](12-nginx-reverse-proxy.md)*
+*Next: [Section 14 — PostgreSQL Production Labs](14-postgresql-production.md)*
 
-*Congratulations on completing the curriculum! Return to [README](README.md) for the full learning path overview.*
+*Congratulations on completing the core curriculum! Continue with the [Extended Practice Modules](README.md) (Sections 14–20) for deeper hands-on labs.*

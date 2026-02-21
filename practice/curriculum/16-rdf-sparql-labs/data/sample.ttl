@@ -1,0 +1,151 @@
+@prefix ex:    <http://example.org/> .
+@prefix book:  <http://example.org/book/> .
+@prefix author: <http://example.org/author/> .
+@prefix pub:   <http://example.org/publisher/> .
+@prefix lang:  <http://example.org/language/> .
+@prefix dct:   <http://purl.org/dc/terms/> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+
+# ============================================================
+# Authors
+# ============================================================
+
+author:knuth  a schema:Person ;
+    schema:name         "Donald Knuth" ;
+    schema:birthDate    "1938-01-10"^^xsd:date ;
+    schema:nationality  "American" .
+
+author:kleppmann  a schema:Person ;
+    schema:name         "Martin Kleppmann" ;
+    schema:birthDate    "1985-04-22"^^xsd:date ;
+    schema:nationality  "German" .
+
+author:martin  a schema:Person ;
+    schema:name         "Robert C. Martin" ;
+    schema:nationality  "American" .
+
+author:thomas  a schema:Person ;
+    schema:name         "David Thomas" ;
+    schema:nationality  "British" .
+
+author:hunt  a schema:Person ;
+    schema:name         "Andrew Hunt" ;
+    schema:nationality  "American" .
+
+author:beyer  a schema:Person ;
+    schema:name         "Betsy Beyer" ;
+    schema:nationality  "American" .
+
+author:matthes  a schema:Person ;
+    schema:name         "Eric Matthes" ;
+    schema:nationality  "American" .
+
+# ============================================================
+# Publishers
+# ============================================================
+
+pub:addison  a schema:Organization ;
+    schema:name     "Addison-Wesley" ;
+    schema:location "Boston, MA" .
+
+pub:oreilly  a schema:Organization ;
+    schema:name     "O'Reilly Media" ;
+    schema:location "Sebastopol, CA" .
+
+pub:prentice  a schema:Organization ;
+    schema:name     "Prentice Hall" ;
+    schema:location "Upper Saddle River, NJ" .
+
+pub:nostarch  a schema:Organization ;
+    schema:name     "No Starch Press" ;
+    schema:location "San Francisco, CA" .
+
+# ============================================================
+# Languages
+# ============================================================
+
+lang:en  a schema:Language ;
+    schema:name "English" .
+
+lang:de  a schema:Language ;
+    schema:name "German" .
+
+lang:fr  a schema:Language ;
+    schema:name "French" .
+
+# ============================================================
+# Books
+# ============================================================
+
+book:1  a schema:Book ;
+    dct:title           "The Art of Computer Programming" ;
+    schema:author       author:knuth ;
+    schema:publisher    pub:addison ;
+    schema:inLanguage   lang:en ;
+    schema:datePublished "1968"^^xsd:gYear ;
+    schema:numberOfPages 3168 ;
+    schema:genre        "Computer Science" ;
+    schema:description  "Comprehensive monograph on algorithms and data structures" .
+
+book:2  a schema:Book ;
+    dct:title           "Designing Data-Intensive Applications" ;
+    schema:author       author:kleppmann ;
+    schema:publisher    pub:oreilly ;
+    schema:inLanguage   lang:en, lang:de ;
+    schema:datePublished "2017"^^xsd:gYear ;
+    schema:numberOfPages 624 ;
+    schema:genre        "Computer Science" ;
+    schema:description  "The big ideas behind reliable scalable and maintainable systems" .
+
+book:3  a schema:Book ;
+    dct:title           "Clean Code" ;
+    schema:author       author:martin ;
+    schema:publisher    pub:prentice ;
+    schema:inLanguage   lang:en, lang:fr ;
+    schema:datePublished "2008"^^xsd:gYear ;
+    schema:numberOfPages 464 ;
+    schema:genre        "Software Engineering" ;
+    schema:description  "A handbook of agile software craftsmanship" .
+
+book:4  a schema:Book ;
+    dct:title           "The Pragmatic Programmer" ;
+    schema:author       author:thomas, author:hunt ;
+    schema:publisher    pub:addison ;
+    schema:inLanguage   lang:en ;
+    schema:datePublished "2019"^^xsd:gYear ;
+    schema:numberOfPages 352 ;
+    schema:genre        "Software Engineering" ;
+    schema:description  "From journeyman to master programmer" .
+
+book:5  a schema:Book ;
+    dct:title           "Site Reliability Engineering" ;
+    schema:author       author:beyer ;
+    schema:publisher    pub:oreilly ;
+    schema:inLanguage   lang:en ;
+    schema:datePublished "2016"^^xsd:gYear ;
+    schema:numberOfPages 552 ;
+    schema:genre        "DevOps" ;
+    schema:description  "How Google runs production systems" .
+
+book:6  a schema:Book ;
+    dct:title           "Python Crash Course" ;
+    schema:author       author:matthes ;
+    schema:publisher    pub:nostarch ;
+    schema:inLanguage   lang:en ;
+    schema:datePublished "2023"^^xsd:gYear ;
+    schema:numberOfPages 544 ;
+    schema:genre        "Programming" ;
+    schema:description  "A hands-on project-based introduction to Python" .
+
+book:7  a schema:Book ;
+    dct:title           "Database Internals" ;
+    schema:author       author:kleppmann ;
+    schema:publisher    pub:oreilly ;
+    schema:inLanguage   lang:en ;
+    schema:datePublished "2019"^^xsd:gYear ;
+    schema:numberOfPages 350 ;
+    schema:genre        "Computer Science" ;
+    schema:description  "Deep dive into how distributed data systems work" .

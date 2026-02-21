@@ -1,0 +1,72 @@
+---
+# Exercise 19.1: Bootstrap a VM for container deployments
+# Run: ansible-playbook -i inventory.ini ansible/bootstrap.yml
+
+- name: Bootstrap server for Docker deployments
+  hosts: local
+  become: true
+  vars:
+    app_dirs:
+      - /opt/app
+      - /opt/app/data
+      - /opt/app/logs
+      - /opt/app/configs
+    deploy_user: deploy
+
+  tasks:
+    - name: Update package cache
+      apt:
+        update_cache: true
+        cache_valid_time: 3600
+      when: ansible_os_family == "Debian"
+
+    - name: Install Docker prerequisites
+      apt:
+        name:
+          - docker.io
+          - docker-compose-v2
+          - curl
+          - jq
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Ensure Docker is installed (check only for non-Debian)
+      command: docker --version
+      register: docker_check
+      changed_when: false
+      failed_when: docker_check.rc != 0
+      when: ansible_os_family != "Debian"
+
+    - name: Enable and start Docker service
+      systemd:
+        name: docker
+        enabled: true
+        state: started
+      ignore_errors: true  # May fail in containers without systemd
+
+    - name: Create application directories
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: root
+        group: root
+        mode: "0755"
+      loop: "{{ app_dirs }}"
+
+    - name: Create deploy user
+      user:
+        name: "{{ deploy_user }}"
+        groups: docker
+        append: true
+        shell: /bin/bash
+        create_home: true
+        state: present
+
+    - name: Verify Docker is working
+      command: docker info
+      register: docker_info
+      changed_when: false
+
+    - name: Print Docker version
+      debug:
+        msg: "Docker is ready: {{ docker_info.stdout_lines[0] }}"

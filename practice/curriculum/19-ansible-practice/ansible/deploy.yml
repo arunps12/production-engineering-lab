@@ -1,0 +1,67 @@
+---
+# Exercise 19.2: Deploy a Docker Compose stack
+# Run: ansible-playbook -i inventory.ini ansible/deploy.yml -e "app_version=1.0.0"
+
+- name: Deploy application stack
+  hosts: local
+  become: true
+  vars:
+    app_dir: /opt/app
+    app_version: "{{ app_version | default('1.0.0') }}"
+    postgres_user: "{{ postgres_user | default('labuser') }}"
+    postgres_password: "{{ postgres_password | default('labpass') }}"
+    postgres_db: "{{ postgres_db | default('labdb') }}"
+    app_port: "{{ app_port | default('8080') }}"
+
+  tasks:
+    - name: Ensure app directory exists
+      file:
+        path: "{{ app_dir }}"
+        state: directory
+        mode: "0755"
+
+    - name: Copy docker-compose.yml
+      copy:
+        src: "../templates/docker-compose.yml"
+        dest: "{{ app_dir }}/docker-compose.yml"
+        mode: "0644"
+      notify: Restart stack
+
+    - name: Render .env from template
+      template:
+        src: "../templates/env.j2"
+        dest: "{{ app_dir }}/.env"
+        mode: "0600"
+      notify: Restart stack
+
+    - name: Pull Docker images
+      command: docker compose pull
+      args:
+        chdir: "{{ app_dir }}"
+      changed_when: true
+
+    - name: Start the stack
+      command: docker compose up -d
+      args:
+        chdir: "{{ app_dir }}"
+      changed_when: true
+
+    - name: Wait for application to be healthy
+      uri:
+        url: "http://localhost:{{ app_port }}"
+        status_code: [200, 301, 302]
+      register: health
+      retries: 10
+      delay: 5
+      until: health.status in [200, 301, 302]
+      ignore_errors: true
+
+    - name: Report deployment status
+      debug:
+        msg: "Deployment of version {{ app_version }} complete. Health: {{ health.status | default('unknown') }}"
+
+  handlers:
+    - name: Restart stack
+      command: docker compose restart
+      args:
+        chdir: "{{ app_dir }}"

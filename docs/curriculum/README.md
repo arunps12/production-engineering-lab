@@ -35,6 +35,18 @@
 | 12 | Nginx & Reverse Proxy | [12-nginx-reverse-proxy.md](12-nginx-reverse-proxy.md) |
 | 13 | Final Capstone | [13-capstone-project.md](13-capstone-project.md) |
 
+### Extended Practice Modules
+
+| Section | Topic | File |
+|---------|-------|------|
+| 14 | PostgreSQL Production Labs | [14-postgresql-production.md](14-postgresql-production.md) |
+| 15 | Elasticsearch Practice | [15-elasticsearch-practice.md](15-elasticsearch-practice.md) |
+| 16 | RDF & SPARQL Labs | [16-rdf-sparql-labs.md](16-rdf-sparql-labs.md) |
+| 17 | REST API CRUD Labs | [17-rest-api-crud-labs.md](17-rest-api-crud-labs.md) |
+| 18 | Docker Debug Labs | [18-docker-debug-labs.md](18-docker-debug-labs.md) |
+| 19 | Ansible Practice | [19-ansible-practice.md](19-ansible-practice.md) |
+| 20 | CI/CD Practice | [20-cicd-practice.md](20-cicd-practice.md) |
+
 ---
 
 ## Target Project Structure
@@ -89,7 +101,7 @@ practical-production-service/
 
 ---
 
-## Suggested 11-Week Plan
+## Suggested 14-Week Plan
 
 | Week | Focus |
 |------|-------|
@@ -102,8 +114,11 @@ practical-production-service/
 | 7 | Section 7 (Monitoring) |
 | 8 | Section 8 (Git) + Section 9 (Databases) |
 | 9 | Section 10 (Security) + Section 11 (Cloud) |
-| 10 | Section 12 (Nginx) |
-| 11 | Section 13 (Capstone) — full integration |
+| 10 | Section 12 (Nginx) + Section 13 (Capstone) |
+| 11 | Section 14 (PostgreSQL) + Section 15 (Elasticsearch) |
+| 12 | Section 16 (RDF/SPARQL) + Section 17 (REST CRUD) |
+| 13 | Section 18 (Docker Debug) + Section 19 (Ansible) |
+| 14 | Section 20 (CI/CD Practice) — pipeline integration |
 
 ---
 
@@ -115,6 +130,7 @@ practical-production-service/
 - Docker + Docker Compose
 - Git
 - `curl`, `jq`, `ss`, `netstat` (standard Linux tools)
+- Ansible (`pip install ansible`) — for Section 19
 
 ---
 

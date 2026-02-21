@@ -1,0 +1,12 @@
+PREFIX dct:    <http://purl.org/dc/terms/>
+PREFIX schema: <http://schema.org/>
+
+# Q4: Count books by language (GROUP BY)
+SELECT ?language (COUNT(?book) AS ?bookCount)
+WHERE {
+    ?book a schema:Book ;
+          schema:inLanguage ?langNode .
+    ?langNode schema:name ?language .
+}
+GROUP BY ?language
+ORDER BY DESC(?bookCount)

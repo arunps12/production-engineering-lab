@@ -1,0 +1,14 @@
+PREFIX dct:    <http://purl.org/dc/terms/>
+PREFIX schema: <http://schema.org/>
+
+# SPARQL equivalent of SQL Q5: Books with multiple authors
+SELECT ?title (GROUP_CONCAT(?authorName; separator=", ") AS ?authors) (COUNT(?authorNode) AS ?authorCount)
+WHERE {
+    ?book a schema:Book ;
+          dct:title ?title ;
+          schema:author ?authorNode .
+    ?authorNode schema:name ?authorName .
+}
+GROUP BY ?title
+HAVING (COUNT(?authorNode) > 1)
+ORDER BY ?title

@@ -1,0 +1,12 @@
+PREFIX dct:    <http://purl.org/dc/terms/>
+PREFIX schema: <http://schema.org/>
+
+# Q1: List all books with their authors
+SELECT ?title ?author
+WHERE {
+    ?book a schema:Book ;
+          dct:title ?title ;
+          schema:author ?authorNode .
+    ?authorNode schema:name ?author .
+}
+ORDER BY ?title

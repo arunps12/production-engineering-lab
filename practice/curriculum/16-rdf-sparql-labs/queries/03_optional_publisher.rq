@@ -1,0 +1,17 @@
+PREFIX dct:    <http://purl.org/dc/terms/>
+PREFIX schema: <http://schema.org/>
+
+# Q3: All books with optional publisher info
+# OPTIONAL means books without a publisher still appear
+SELECT ?title ?author ?publisherName
+WHERE {
+    ?book a schema:Book ;
+          dct:title ?title ;
+          schema:author ?authorNode .
+    ?authorNode schema:name ?author .
+    OPTIONAL {
+        ?book schema:publisher ?pub .
+        ?pub schema:name ?publisherName .
+    }
+}
+ORDER BY ?title

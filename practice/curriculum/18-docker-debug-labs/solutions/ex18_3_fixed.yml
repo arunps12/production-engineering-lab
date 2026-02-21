@@ -1,0 +1,39 @@
+# FIXED: Init container sets correct permissions before app runs
+version: "3.8"
+
+services:
+  # Init container runs as root to fix permissions
+  init-permissions:
+    image: python:3.12-slim
+    container_name: init_debug_18_3
+    user: "0:0"
+    volumes:
+      - writer_data:/data
+    command: >
+      sh -c "chown -R 1000:1000 /data && echo 'Permissions fixed'"
+    restart: "no"
+
+  writer:
+    image: python:3.12-slim
+    container_name: writer_debug_18_3
+    # FIX: runs as non-root user, permissions fixed by init container
+    user: "1000:1000"
+    depends_on:
+      init-permissions:
+        condition: service_completed_successfully
+    volumes:
+      - writer_data:/data
+    command: >
+      python -c "
+      try:
+          with open('/data/output.log', 'w') as f:
+              f.write('Hello from writer\n')
+          print('Write successful')
+      except PermissionError as e:
+          import sys
+          print(f'Permission denied: {e}', file=sys.stderr)
+          sys.exit(1)
+      "
+
+volumes:
+  writer_data:

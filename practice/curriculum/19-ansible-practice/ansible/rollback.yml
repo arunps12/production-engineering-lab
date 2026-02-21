@@ -1,0 +1,63 @@
+---
+# Exercise 19.3: Rollback to a previous version
+# Run: ansible-playbook -i inventory.ini ansible/rollback.yml -e "app_version=1.0.0"
+
+- name: Rollback application to previous version
+  hosts: local
+  become: true
+  vars:
+    app_dir: /opt/app
+    app_version: "{{ app_version }}"
+    postgres_user: "{{ postgres_user | default('labuser') }}"
+    postgres_password: "{{ postgres_password | default('labpass') }}"
+    postgres_db: "{{ postgres_db | default('labdb') }}"
+    app_port: "{{ app_port | default('8080') }}"
+
+  tasks:
+    - name: Validate rollback version is specified
+      assert:
+        that:
+          - app_version is defined
+          - app_version | length > 0
+        fail_msg: "You must specify app_version: ansible-playbook ... -e 'app_version=1.0.0'"
+
+    - name: Stop current stack
+      command: docker compose down
+      args:
+        chdir: "{{ app_dir }}"
+      changed_when: true
+      ignore_errors: true
+
+    - name: Update .env with rollback version
+      template:
+        src: "../templates/env.j2"
+        dest: "{{ app_dir }}/.env"
+        mode: "0600"
+
+    - name: Pull rollback version images
+      command: docker compose pull
+      args:
+        chdir: "{{ app_dir }}"
+      changed_when: true
+
+    - name: Start stack with rollback version
+      command: docker compose up -d
+      args:
+        chdir: "{{ app_dir }}"
+      changed_when: true
+
+    - name: Wait for application health check
+      uri:
+        url: "http://localhost:{{ app_port }}"
+        status_code: [200, 301, 302]
+      register: health
+      retries: 10
+      delay: 5
+      until: health.status in [200, 301, 302]
+      ignore_errors: true
+
+    - name: Report rollback status
+      debug:
+        msg: >
+          Rollback to version {{ app_version }} {{ 'SUCCEEDED' if health.status | default(0) in [200, 301, 302] else 'FAILED — check logs' }}.
+          Health check: {{ health.status | default('unreachable') }}

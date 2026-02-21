@@ -1,0 +1,11 @@
+PREFIX schema: <http://schema.org/>
+
+# SPARQL equivalent of SQL Q4: Count books by language
+SELECT ?language (COUNT(?book) AS ?bookCount)
+WHERE {
+    ?book a schema:Book ;
+          schema:inLanguage ?langNode .
+    ?langNode schema:name ?language .
+}
+GROUP BY ?language
+ORDER BY DESC(?bookCount)

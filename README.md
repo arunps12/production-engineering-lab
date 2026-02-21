@@ -47,6 +47,27 @@ See the [Python Guide README](docs/python-guide/README.md) for the full learning
 
 The [Curriculum README](docs/curriculum/README.md) has the full learning path, suggested schedule, and target project structure.
 
+### Extended Practice Modules
+
+Hands-on labs that go deeper into databases, search, DevOps, and CI/CD:
+
+| # | Module | Topics |
+|---|--------|--------|
+| 14 | [PostgreSQL Production Labs](practice/curriculum/14-postgresql-production-labs/) | Docker Postgres, schema design, EXPLAIN ANALYZE, transactions & locks, Alembic migrations |
+| 15 | [Elasticsearch Practice](practice/curriculum/15-elasticsearch-practice/) | Full-text search, analyzers, Query DSL, SQL vs ES comparison, reindexing with aliases |
+| 16 | [RDF & SPARQL Labs](practice/curriculum/16-rdf-sparql-labs/) | RDF triples, Turtle format, Fuseki Docker, SPARQL queries, SQL vs SPARQL comparison |
+| 17 | [REST API CRUD Labs](practice/curriculum/17-rest-api-crud-labs/) | Full CRUD API, PUT vs PATCH, pagination, rate limiting, idempotency, pytest suite |
+| 18 | [Docker Debug Labs](practice/curriculum/18-docker-debug-labs/) | 5 intentionally broken Compose setups, systematic debug checklist, fix & verify |
+| 19 | [Ansible Practice](practice/curriculum/19-ansible-practice/) | Inventory, bootstrap playbook, deploy & rollback playbooks, Jinja2 templates |
+| 20 | [CI/CD Practice](practice/curriculum/20-ci-cd-practice/) | GitHub Actions workflow, local smoke tests, lint + test + service smoke jobs |
+
+### Cheatsheets
+
+| Cheatsheet | Description |
+|-----------|-------------|
+| [SQL vs SPARQL vs Elasticsearch](docs/cheatsheets/sql_vs_sparql_vs_es.md) | Comparison table, same query in 3 languages, when to use each |
+| [CRUD ↔ REST / PUT vs PATCH](docs/cheatsheets/crud_rest_put_patch.md) | CRUD-REST mapping, PUT vs PATCH examples, idempotency, SQL vs SPARQL CRUD |
+
 ## Target Project Structure
 
 The curriculum incrementally builds this project:

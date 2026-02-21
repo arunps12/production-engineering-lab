@@ -1,0 +1,45 @@
+# FIXED: DATABASE_HOST matches the compose service name "postgres"
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: pg_debug_18_1
+    environment:
+      POSTGRES_USER: labuser
+      POSTGRES_PASSWORD: labpass
+      POSTGRES_DB: labdb
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U labuser"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  app:
+    image: python:3.12-slim
+    container_name: app_debug_18_1
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      # FIX: hostname matches the service name
+      DATABASE_HOST: postgres
+      DATABASE_PORT: "5432"
+      DATABASE_USER: labuser
+      DATABASE_PASSWORD: labpass
+      DATABASE_NAME: labdb
+    command: >
+      python -c "
+      import socket, os, sys, time
+      host = os.environ['DATABASE_HOST']
+      port = int(os.environ['DATABASE_PORT'])
+      print(f'Connecting to {host}:{port}...')
+      time.sleep(3)
+      try:
+          s = socket.create_connection((host, port), timeout=5)
+          s.close()
+          print('Connected to database successfully')
+      except Exception as e:
+          print(f'ERROR: {e}', file=sys.stderr)
+          sys.exit(1)
+      "

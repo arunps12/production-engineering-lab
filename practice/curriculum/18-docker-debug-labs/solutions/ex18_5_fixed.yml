@@ -1,0 +1,16 @@
+# FIXED: Each service uses a different host port
+version: "3.8"
+
+services:
+  web1:
+    image: nginx:alpine
+    container_name: web1_debug_18_5
+    ports:
+      - "8080:80"
+
+  web2:
+    image: nginx:alpine
+    container_name: web2_debug_18_5
+    ports:
+      # FIX: different host port
+      - "8081:80"

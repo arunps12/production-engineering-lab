@@ -1,0 +1,17 @@
+# BROKEN: Both services bind to the same host port 8080
+version: "3.8"
+
+services:
+  web1:
+    image: nginx:alpine
+    container_name: web1_debug_18_5
+    ports:
+      # BUG: port 8080 used by both services
+      - "8080:80"
+
+  web2:
+    image: nginx:alpine
+    container_name: web2_debug_18_5
+    ports:
+      # BUG: port 8080 already used by web1
+      - "8080:80"

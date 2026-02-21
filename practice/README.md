@@ -42,19 +42,26 @@ practice/
     ├── 10-security/             (3 files — JWT, RBAC, secrets, validation)
     ├── 11-cloud-infrastructure/ (4 files — Terraform, health checks, IaC)
     ├── 12-nginx/                (5 files — config, proxy, load balancing)
-    └── 13-capstone/             (27 files — complete production service)
-        ├── src/appcore/api/       FastAPI app, routes, auth, rate limiter
-        ├── src/appcore/db/        SQLite, repository, cache stubs
-        ├── src/appcore/models/    Prediction logic
-        ├── src/appcore/monitoring/ Prometheus metrics
-        ├── tests/                 test_health, test_predict, test_db, test_auth
-        ├── configs/nginx.conf     Nginx reverse proxy template
-        ├── scripts/health_check.sh Deployment verification
-        ├── infra/terraform/       IaC config template
-        ├── .env.example           Environment template
-        ├── Dockerfile             Multi-stage build template
-        ├── docker-compose.yml     Full stack compose (app+nginx+redis)
-        └── verify.sh              Verification script
+    ├── 13-capstone/             (27 files — complete production service)
+    │   ├── src/appcore/api/       FastAPI app, routes, auth, rate limiter
+    │   ├── src/appcore/db/        SQLite, repository, cache stubs
+    │   ├── src/appcore/models/    Prediction logic
+    │   ├── src/appcore/monitoring/ Prometheus metrics
+    │   ├── tests/                 test_health, test_predict, test_db, test_auth
+    │   ├── configs/nginx.conf     Nginx reverse proxy template
+    │   ├── scripts/health_check.sh Deployment verification
+    │   ├── infra/terraform/       IaC config template
+    │   ├── .env.example           Environment template
+    │   ├── Dockerfile             Multi-stage build template
+    │   ├── docker-compose.yml     Full stack compose (app+nginx+redis)
+    │   └── verify.sh              Verification script
+    ├── 14-postgresql-production-labs/ (12 files — Docker PG, schema, EXPLAIN, Alembic)
+    ├── 15-elasticsearch-practice/    (9 files — ES Docker, Query DSL, reindex)
+    ├── 16-rdf-sparql-labs/           (16 files — Fuseki, SPARQL, SQL comparison)
+    ├── 17-rest-api-crud-labs/        (11 files — CRUD API, PUT/PATCH, tests)
+    ├── 18-docker-debug-labs/         (12 files — broken compose, debug checklist)
+    ├── 19-ansible-practice/          (6 files — playbooks, templates, inventory)
+    └── 20-ci-cd-practice/            (3 files — GitHub Actions, smoke tests)
 ```
 
 ## Exercise Naming Convention
@@ -91,7 +98,14 @@ practice/
 | Curriculum: Cloud Infrastructure | 4 | 18 |
 | Curriculum: Nginx | 5 | 18 |
 | Curriculum: Capstone | 27 | 27 |
-| **Total** | **179** | **~391** |
+| Curriculum: PostgreSQL Labs | 12 | 5 |
+| Curriculum: Elasticsearch | 9 | 4 |
+| Curriculum: RDF & SPARQL | 16 | 4 |
+| Curriculum: REST CRUD Labs | 11 | 6 |
+| Curriculum: Docker Debug | 12 | 5 |
+| Curriculum: Ansible | 6 | 3 |
+| Curriculum: CI/CD Practice | 3 | 4 |
+| **Total** | **248** | **~422** |
 
 > Some sections group multiple exercises into a single file (e.g., Linux bash exercises are grouped by range).
 

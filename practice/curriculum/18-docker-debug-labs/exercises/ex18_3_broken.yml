@@ -1,0 +1,25 @@
+# BROKEN: Volume mounted as root, app runs as non-root user (UID 1000)
+version: "3.8"
+
+services:
+  writer:
+    image: python:3.12-slim
+    container_name: writer_debug_18_3
+    # BUG: runs as non-root user but volume is owned by root
+    user: "1000:1000"
+    volumes:
+      - writer_data:/data
+    command: >
+      python -c "
+      try:
+          with open('/data/output.log', 'w') as f:
+              f.write('Hello from writer\n')
+          print('Write successful')
+      except PermissionError as e:
+          import sys
+          print(f'Permission denied: {e}', file=sys.stderr)
+          sys.exit(1)
+      "
+
+volumes:
+  writer_data:

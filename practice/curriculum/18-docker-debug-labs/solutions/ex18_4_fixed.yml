@@ -1,0 +1,24 @@
+# FIXED: JVM heap fits within container memory limit
+version: "3.8"
+
+services:
+  es:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
+    container_name: es_debug_18_4
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      # FIX: JVM heap 512MB, container limit 1GB (heap should be ~50% of container memory)
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9201:9200"
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+    healthcheck:
+      test: ["CMD-SHELL", "curl -sf http://localhost:9200/_cluster/health || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped

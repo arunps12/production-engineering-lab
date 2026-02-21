@@ -1,0 +1,21 @@
+# FIXED: Healthcheck uses correct username
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: pg_health_lab
+    environment:
+      POSTGRES_USER: labuser
+      POSTGRES_PASSWORD: labpass
+      POSTGRES_DB: labdb
+    ports:
+      - "5433:5432"
+    healthcheck:
+      # FIX: correct user matches POSTGRES_USER
+      test: ["CMD-SHELL", "pg_isready -U labuser -d labdb"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+    restart: unless-stopped

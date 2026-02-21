@@ -1,0 +1,209 @@
+name: Practice Modules CI
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ── Lint ──────────────────────────────────────
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install ruff
+        run: uv tool install ruff
+
+      - name: Lint Python files
+        run: ruff check practice/curriculum/17-rest-api-crud-labs/src/ practice/curriculum/17-rest-api-crud-labs/tests/
+
+  # ── Test CRUD API ─────────────────────────────
+  test-crud-api:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Cache uv packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/uv
+          key: ${{ runner.os }}-uv-${{ hashFiles('practice/curriculum/17-rest-api-crud-labs/pyproject.toml') }}
+
+      - name: Install dependencies
+        working-directory: practice/curriculum/17-rest-api-crud-labs
+        run: uv sync
+
+      - name: Run tests
+        working-directory: practice/curriculum/17-rest-api-crud-labs
+        run: uv run pytest tests/ -v --tb=short
+
+  # ── Smoke: PostgreSQL ─────────────────────────
+  smoke-postgres:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: labuser
+          POSTGRES_PASSWORD: labpass
+          POSTGRES_DB: labdb
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U labuser -d labdb"
+          --health-interval 5s
+          --health-timeout 3s
+          --health-retries 5
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify Postgres connection
+        run: |
+          sudo apt-get update && sudo apt-get install -y postgresql-client
+          psql -h localhost -U labuser -d labdb -c "SELECT 1 AS ok;"
+        env:
+          PGPASSWORD: labpass
+
+      - name: Run schema creation
+        run: |
+          psql -h localhost -U labuser -d labdb < practice/curriculum/14-postgresql-production-labs/scripts/schema.sql
+          psql -h localhost -U labuser -d labdb < practice/curriculum/14-postgresql-production-labs/scripts/seed.sql
+        env:
+          PGPASSWORD: labpass
+
+      - name: Run queries
+        run: |
+          psql -h localhost -U labuser -d labdb < practice/curriculum/14-postgresql-production-labs/scripts/queries.sql
+        env:
+          PGPASSWORD: labpass
+
+  # ── Smoke: Elasticsearch ──────────────────────
+  smoke-elasticsearch:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start Elasticsearch
+        run: |
+          docker run -d --name es_ci \
+            -e discovery.type=single-node \
+            -e xpack.security.enabled=false \
+            -e "ES_JAVA_OPTS=-Xms256m -Xmx256m" \
+            -p 9200:9200 \
+            docker.elastic.co/elasticsearch/elasticsearch:8.12.0
+
+      - name: Wait for Elasticsearch
+        run: |
+          for i in $(seq 1 24); do
+            if curl -sf http://localhost:9200/_cluster/health > /dev/null 2>&1; then
+              echo "ES is ready"
+              break
+            fi
+            echo "Waiting for ES... ($i/24)"
+            sleep 5
+          done
+          curl -sf http://localhost:9200/_cluster/health | jq .
+
+      - name: Create index and index docs
+        working-directory: practice/curriculum/15-elasticsearch-practice
+        run: |
+          bash scripts/create_index.sh
+          bash scripts/index_docs.sh
+
+      - name: Run query examples
+        working-directory: practice/curriculum/15-elasticsearch-practice
+        run: bash scripts/query_examples.sh
+
+      - name: Cleanup
+        if: always()
+        run: docker rm -f es_ci || true
+
+  # ── Smoke: Fuseki ─────────────────────────────
+  smoke-fuseki:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start Fuseki
+        run: |
+          docker run -d --name fuseki_ci \
+            -e ADMIN_PASSWORD=admin \
+            -e JVM_ARGS=-Xmx256m \
+            -p 3030:3030 \
+            stain/jena-fuseki:4.10.0
+
+      - name: Wait for Fuseki
+        run: |
+          for i in $(seq 1 12); do
+            if curl -sf http://localhost:3030/$/ping > /dev/null 2>&1; then
+              echo "Fuseki is ready"
+              break
+            fi
+            echo "Waiting for Fuseki... ($i/12)"
+            sleep 5
+          done
+
+      - name: Create dataset and load data
+        working-directory: practice/curriculum/16-rdf-sparql-labs
+        run: |
+          curl -sf -X POST http://localhost:3030/$/datasets \
+            -H 'Content-Type: application/x-www-form-urlencoded' \
+            -d 'dbName=books&dbType=tdb2'
+
+          curl -sf -X POST http://localhost:3030/books/data \
+            -H 'Content-Type: text/turtle' \
+            --data-binary @data/sample.ttl
+
+      - name: Run SPARQL queries
+        working-directory: practice/curriculum/16-rdf-sparql-labs
+        run: |
+          for f in queries/*.rq; do
+            echo "=== $(basename $f) ==="
+            curl -sf -G http://localhost:3030/books/query \
+              --data-urlencode "query@$f" \
+              -H 'Accept: application/json' | jq '.results.bindings | length'
+          done
+
+      - name: Cleanup
+        if: always()
+        run: docker rm -f fuseki_ci || true
+
+  # ── Smoke: CRUD API ──────────────────────────
+  smoke-crud-api:
+    runs-on: ubuntu-latest
+    needs: [test-crud-api]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+
+      - name: Install dependencies
+        working-directory: practice/curriculum/17-rest-api-crud-labs
+        run: uv sync
+
+      - name: Start CRUD API in background
+        working-directory: practice/curriculum/17-rest-api-crud-labs
+        run: |
+          uv run uvicorn src.crud_api.main:app --port 8000 &
+          sleep 3
+
+      - name: Run curl smoke test
+        working-directory: practice/curriculum/17-rest-api-crud-labs
+        run: bash scripts/curl_smoke_test.sh http://localhost:8000
