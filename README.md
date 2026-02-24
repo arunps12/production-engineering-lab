@@ -28,38 +28,53 @@ See the [Python Guide README](docs/python-guide/README.md) for the full learning
 
 ## Production Engineering Curriculum
 
+### Core Foundations
+
 | # | Section | Topics |
 |---|---------|--------|
 | 0 | [UV & Python Environment](docs/curriculum/00-uv-python-environment.md) | `uv`, `pyproject.toml`, lockfiles, reproducible builds, virtual environments |
 | 1 | [Linux Fundamentals](docs/curriculum/01-linux-fundamentals.md) | Processes, ports, permissions, shells, daemons, systemd concepts |
-| 2 | [Networking & Debug Lab](docs/curriculum/02-networking-debug-lab.md) | IP, DNS, TCP handshake, sockets, `127.0.0.1` vs `0.0.0.0`, firewalls |
-| 3 | [REST API Design](docs/curriculum/03-rest-api-design.md) | HTTP verbs, status codes, idempotency, pagination, versioning |
-| 4 | [FastAPI Professional Practice](docs/curriculum/04-fastapi-professional.md) | ASGI, uvicorn, middleware, dependency injection, async, testing |
-| 5 | [Docker & Containerization](docs/curriculum/05-docker-containerization.md) | Images, layers, multi-stage builds, Compose, health checks, networking |
-| 6 | [CI/CD Automation](docs/curriculum/06-ci-cd-automation.md) | GitHub Actions, caching, matrix builds, Docker registry, deployment |
-| 7 | [Monitoring & Observability](docs/curriculum/07-monitoring-observability.md) | Prometheus metrics, histograms, structured logging, alerting concepts |
-| 8 | [Git & Version Control](docs/curriculum/08-git-version-control.md) | Branching, rebasing, hooks, tags, conventional commits, Git workflows |
-| 9 | [Database Fundamentals](docs/curriculum/09-database-fundamentals.md) | SQLite, connection management, repository pattern, migrations, Redis caching |
-| 10 | [Security Fundamentals](docs/curriculum/10-security-fundamentals.md) | API key auth, rate limiting, secrets management, security headers, OWASP |
-| 11 | [Cloud & Infrastructure](docs/curriculum/11-cloud-infrastructure-basics.md) | IaC concepts, Terraform basics, health checks, deployment strategies |
+| 2 | [Git & Version Control](docs/curriculum/02-git-version-control.md) | Branching, rebasing, hooks, tags, conventional commits, Git workflows |
+| 3 | [Networking & Debug Lab](docs/curriculum/03-networking-debug-lab.md) | IP, DNS, TCP handshake, sockets, `127.0.0.1` vs `0.0.0.0`, firewalls |
+
+### Data & API Development
+
+| # | Section | Topics |
+|---|---------|--------|
+| 4 | [Database Fundamentals](docs/curriculum/04-database-fundamentals.md) | SQLite, connection management, repository pattern, migrations, Redis caching |
+| 5 | [REST API Design](docs/curriculum/05-rest-api-design.md) | HTTP verbs, status codes, idempotency, pagination, versioning |
+| 6 | [FastAPI Professional Practice](docs/curriculum/06-fastapi-professional.md) | ASGI, uvicorn, middleware, dependency injection, async, testing |
+| 7 | [REST API CRUD Labs](docs/curriculum/07-rest-api-crud-labs.md) | Full CRUD API, PUT vs PATCH, pagination, rate limiting, idempotency, pytest suite |
+| 8 | [PostgreSQL Production Labs](docs/curriculum/08-postgresql-production.md) | Docker Postgres, schema design, EXPLAIN ANALYZE, transactions & locks, Alembic migrations |
+
+### Deployment & Infrastructure
+
+| # | Section | Topics |
+|---|---------|--------|
+| 9 | [Docker & Containerization](docs/curriculum/09-docker-containerization.md) | Images, layers, multi-stage builds, Compose, health checks, networking |
+| 10 | [Docker Debug Labs](docs/curriculum/10-docker-debug-labs.md) | 5 intentionally broken Compose setups, systematic debug checklist, fix & verify |
+| 11 | [Security Fundamentals](docs/curriculum/11-security-fundamentals.md) | API key auth, rate limiting, secrets management, security headers, OWASP |
 | 12 | [Nginx Reverse Proxy](docs/curriculum/12-nginx-reverse-proxy.md) | Reverse proxy, load balancing, rate limiting, TLS, security headers, gzip |
-| 13 | [Final Capstone](docs/curriculum/13-capstone-project.md) | Three-level capstone integrating all 13 sections (Guided → Semi-guided → Production sim) |
+| 13 | [CI/CD Automation](docs/curriculum/13-ci-cd-automation.md) | GitHub Actions, caching, matrix builds, Docker registry, deployment |
+| 14 | [CI/CD Practice](docs/curriculum/14-cicd-practice.md) | GitHub Actions workflow, local smoke tests, lint + test + service smoke jobs |
+
+### Operations & Advanced Topics
+
+| # | Section | Topics |
+|---|---------|--------|
+| 15 | [Monitoring & Observability](docs/curriculum/15-monitoring-observability.md) | Prometheus metrics, histograms, structured logging, alerting concepts |
+| 16 | [Cloud & Infrastructure](docs/curriculum/16-cloud-infrastructure-basics.md) | IaC concepts, Terraform basics, health checks, deployment strategies |
+| 17 | [Ansible Practice](docs/curriculum/17-ansible-practice.md) | Inventory, bootstrap playbook, deploy & rollback playbooks, Jinja2 templates |
+| 18 | [Elasticsearch Practice](docs/curriculum/18-elasticsearch-practice.md) | Full-text search, analyzers, Query DSL, SQL vs ES comparison, reindexing with aliases |
+| 19 | [RDF & SPARQL Labs](docs/curriculum/19-rdf-sparql-labs.md) | RDF triples, Turtle format, Fuseki Docker, SPARQL queries, SQL vs SPARQL comparison |
+
+### Final Integration
+
+| # | Section | Topics |
+|---|---------|--------|
+| 20 | [Capstone Project](docs/curriculum/20-capstone-project.md) | Three-level capstone integrating all sections (Guided → Semi-guided → Production sim) |
 
 The [Curriculum README](docs/curriculum/README.md) has the full learning path, suggested schedule, and target project structure.
-
-### Extended Practice Modules
-
-Hands-on labs that go deeper into databases, search, DevOps, and CI/CD:
-
-| # | Module | Topics |
-|---|--------|--------|
-| 14 | [PostgreSQL Production Labs](practice/curriculum/14-postgresql-production-labs/) | Docker Postgres, schema design, EXPLAIN ANALYZE, transactions & locks, Alembic migrations |
-| 15 | [Elasticsearch Practice](practice/curriculum/15-elasticsearch-practice/) | Full-text search, analyzers, Query DSL, SQL vs ES comparison, reindexing with aliases |
-| 16 | [RDF & SPARQL Labs](practice/curriculum/16-rdf-sparql-labs/) | RDF triples, Turtle format, Fuseki Docker, SPARQL queries, SQL vs SPARQL comparison |
-| 17 | [REST API CRUD Labs](practice/curriculum/17-rest-api-crud-labs/) | Full CRUD API, PUT vs PATCH, pagination, rate limiting, idempotency, pytest suite |
-| 18 | [Docker Debug Labs](practice/curriculum/18-docker-debug-labs/) | 5 intentionally broken Compose setups, systematic debug checklist, fix & verify |
-| 19 | [Ansible Practice](practice/curriculum/19-ansible-practice/) | Inventory, bootstrap playbook, deploy & rollback playbooks, Jinja2 templates |
-| 20 | [CI/CD Practice](practice/curriculum/20-ci-cd-practice/) | GitHub Actions workflow, local smoke tests, lint + test + service smoke jobs |
 
 ### Cheatsheets
 
@@ -78,14 +93,14 @@ practical-production-service/
 ├── uv.lock
 ├── Dockerfile
 ├── docker-compose.yml
-├── .env.example               # Environment template (Section 10)
-├── .gitignore                  # Git ignore rules (Section 08)
+├── .env.example               # Environment template (Section 11)
+├── .gitignore                  # Git ignore rules (Section 02)
 ├── .github/workflows/ci.yml
 ├── configs/
 │   ├── prometheus.yml
 │   └── nginx.conf              # Reverse proxy config (Section 12)
-├── infra/terraform/main.tf     # IaC config (Section 11)
-├── scripts/health_check.sh     # Deployment verification (Section 11)
+├── infra/terraform/main.tf     # IaC config (Section 16)
+├── scripts/health_check.sh     # Deployment verification (Section 16)
 ├── src/appcore/
 │   ├── __init__.py
 │   ├── api/
@@ -93,13 +108,13 @@ practical-production-service/
 │   │   ├── routes.py           # Endpoint handlers
 │   │   ├── schemas.py          # Pydantic models
 │   │   ├── dependencies.py     # Dependency injection
-│   │   ├── auth.py             # API key auth dependency (Section 10)
-│   │   ├── security.py         # Key verification (Section 10)
-│   │   └── rate_limiter.py     # Sliding window limiter (Section 10)
+│   │   ├── auth.py             # API key auth dependency (Section 11)
+│   │   ├── security.py         # Key verification (Section 11)
+│   │   └── rate_limiter.py     # Sliding window limiter (Section 11)
 │   ├── db/
-│   │   ├── database.py         # SQLite connection manager (Section 09)
-│   │   ├── repository.py       # CRUD operations (Section 09)
-│   │   └── cache.py            # Optional Redis cache (Section 09)
+│   │   ├── database.py         # SQLite connection manager (Section 04)
+│   │   ├── repository.py       # CRUD operations (Section 04)
+│   │   └── cache.py            # Optional Redis cache (Section 04)
 │   ├── models/
 │   │   └── predict.py          # Prediction model
 │   └── monitoring/
@@ -110,8 +125,8 @@ practical-production-service/
     ├── test_version.py
     ├── test_predict.py
     ├── test_metrics.py
-    ├── test_db.py               # Database tests (Section 09)
-    └── test_auth.py             # Auth & security tests (Section 10)
+    ├── test_db.py               # Database tests (Section 04)
+    └── test_auth.py             # Auth & security tests (Section 11)
 ```
 
 ## Prerequisites

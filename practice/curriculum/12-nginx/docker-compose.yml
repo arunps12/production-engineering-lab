@@ -5,13 +5,13 @@
 
 # services:
 #   app:
-#     build: ../08-capstone
+#     build: ../20-capstone
 #     expose:
 #       - "8000"
 #
 #   # Exercise 12.C.1 — Multiple app instances for load balancing
 #   # app2:
-#   #   build: ../08-capstone
+#   #   build: ../20-capstone
 #   #   expose:
 #   #     - "8000"
 #   #   environment:

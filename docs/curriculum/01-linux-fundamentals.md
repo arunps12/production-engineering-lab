@@ -1393,4 +1393,4 @@ echo "Exit code: $?"  # Should be 1
 
 ---
 
-*Next: [Section 2 — Networking & Debug Lab](02-networking-debug-lab.md)*
+*Next: [Section 2 — Git & Version Control](02-git-version-control.md)*

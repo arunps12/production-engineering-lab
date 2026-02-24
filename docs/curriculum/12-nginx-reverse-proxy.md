@@ -454,5 +454,5 @@ hey -n 5000 -c 100 http://localhost/api/health
 6. **Test config before reloading** — `nginx -t` prevents downtime from syntax errors.
 
 ---
-*Previous: [Section 11 — Cloud & Infrastructure Basics](11-cloud-infrastructure-basics.md)*
-*Next: [Section 13 — Final Capstone](13-capstone-project.md)*
+*Previous: [Section 11 — Security Fundamentals](11-security-fundamentals.md)*
+*Next: [Section 13 — CI/CD Automation](13-ci-cd-automation.md)*

@@ -18,34 +18,51 @@
 
 ## Curriculum Map
 
+### Core Foundations (Sections 0–3)
+
 | Section | Topic | File |
 |---------|-------|------|
 | 0 | UV + Python Environment | [00-uv-python-environment.md](00-uv-python-environment.md) |
 | 1 | Linux Fundamentals | [01-linux-fundamentals.md](01-linux-fundamentals.md) |
-| 2 | Networking & Debug Lab | [02-networking-debug-lab.md](02-networking-debug-lab.md) |
-| 3 | REST API Design | [03-rest-api-design.md](03-rest-api-design.md) |
-| 4 | FastAPI Professional Practice | [04-fastapi-professional.md](04-fastapi-professional.md) |
-| 5 | Docker & Containerization | [05-docker-containerization.md](05-docker-containerization.md) |
-| 6 | CI/CD Automation | [06-ci-cd-automation.md](06-ci-cd-automation.md) |
-| 7 | Monitoring & Observability | [07-monitoring-observability.md](07-monitoring-observability.md) |
-| 8 | Git & Version Control | [08-git-version-control.md](08-git-version-control.md) |
-| 9 | Database Fundamentals | [09-database-fundamentals.md](09-database-fundamentals.md) |
-| 10 | Security Fundamentals | [10-security-fundamentals.md](10-security-fundamentals.md) |
-| 11 | Cloud & Infrastructure Basics | [11-cloud-infrastructure-basics.md](11-cloud-infrastructure-basics.md) |
-| 12 | Nginx & Reverse Proxy | [12-nginx-reverse-proxy.md](12-nginx-reverse-proxy.md) |
-| 13 | Final Capstone | [13-capstone-project.md](13-capstone-project.md) |
+| 2 | Git & Version Control | [02-git-version-control.md](02-git-version-control.md) |
+| 3 | Networking & Debug Lab | [03-networking-debug-lab.md](03-networking-debug-lab.md) |
 
-### Extended Practice Modules
+### Data & API Development (Sections 4–8)
 
 | Section | Topic | File |
 |---------|-------|------|
-| 14 | PostgreSQL Production Labs | [14-postgresql-production.md](14-postgresql-production.md) |
-| 15 | Elasticsearch Practice | [15-elasticsearch-practice.md](15-elasticsearch-practice.md) |
-| 16 | RDF & SPARQL Labs | [16-rdf-sparql-labs.md](16-rdf-sparql-labs.md) |
-| 17 | REST API CRUD Labs | [17-rest-api-crud-labs.md](17-rest-api-crud-labs.md) |
-| 18 | Docker Debug Labs | [18-docker-debug-labs.md](18-docker-debug-labs.md) |
-| 19 | Ansible Practice | [19-ansible-practice.md](19-ansible-practice.md) |
-| 20 | CI/CD Practice | [20-cicd-practice.md](20-cicd-practice.md) |
+| 4 | Database Fundamentals | [04-database-fundamentals.md](04-database-fundamentals.md) |
+| 5 | REST API Design | [05-rest-api-design.md](05-rest-api-design.md) |
+| 6 | FastAPI Professional Practice | [06-fastapi-professional.md](06-fastapi-professional.md) |
+| 7 | REST API CRUD Labs | [07-rest-api-crud-labs.md](07-rest-api-crud-labs.md) |
+| 8 | PostgreSQL Production Labs | [08-postgresql-production.md](08-postgresql-production.md) |
+
+### Deployment & Infrastructure (Sections 9–14)
+
+| Section | Topic | File |
+|---------|-------|------|
+| 9 | Docker & Containerization | [09-docker-containerization.md](09-docker-containerization.md) |
+| 10 | Docker Debug Labs | [10-docker-debug-labs.md](10-docker-debug-labs.md) |
+| 11 | Security Fundamentals | [11-security-fundamentals.md](11-security-fundamentals.md) |
+| 12 | Nginx & Reverse Proxy | [12-nginx-reverse-proxy.md](12-nginx-reverse-proxy.md) |
+| 13 | CI/CD Automation | [13-ci-cd-automation.md](13-ci-cd-automation.md) |
+| 14 | CI/CD Practice | [14-cicd-practice.md](14-cicd-practice.md) |
+
+### Operations & Advanced Topics (Sections 15–19)
+
+| Section | Topic | File |
+|---------|-------|------|
+| 15 | Monitoring & Observability | [15-monitoring-observability.md](15-monitoring-observability.md) |
+| 16 | Cloud & Infrastructure Basics | [16-cloud-infrastructure-basics.md](16-cloud-infrastructure-basics.md) |
+| 17 | Ansible Practice | [17-ansible-practice.md](17-ansible-practice.md) |
+| 18 | Elasticsearch Practice | [18-elasticsearch-practice.md](18-elasticsearch-practice.md) |
+| 19 | RDF & SPARQL Labs | [19-rdf-sparql-labs.md](19-rdf-sparql-labs.md) |
+
+### Final Integration (Section 20)
+
+| Section | Topic | File |
+|---------|-------|------|
+| 20 | Capstone Project | [20-capstone-project.md](20-capstone-project.md) |
 
 ---
 
@@ -64,13 +81,13 @@ practical-production-service/
 │       │   ├── routes.py
 │       │   ├── schemas.py
 │       │   ├── dependencies.py
-│       │   ├── auth.py             # API key auth (Section 10)
-│       │   ├── security.py         # Key verification (Section 10)
-│       │   └── rate_limiter.py     # Rate limiting (Section 10)
+│       │   ├── auth.py             # API key auth (Section 11)
+│       │   ├── security.py         # Key verification (Section 11)
+│       │   └── rate_limiter.py     # Rate limiting (Section 11)
 │       ├── db/
-│       │   ├── database.py         # SQLite manager (Section 09)
-│       │   ├── repository.py       # CRUD operations (Section 09)
-│       │   └── cache.py            # Redis cache (Section 09)
+│       │   ├── database.py         # SQLite manager (Section 04)
+│       │   ├── repository.py       # CRUD operations (Section 04)
+│       │   └── cache.py            # Redis cache (Section 04)
 │       ├── config/
 │       │   └── settings.py
 │       └── monitoring/
@@ -82,17 +99,17 @@ practical-production-service/
 │
 ├── infra/
 │   └── terraform/
-│       └── main.tf                 # IaC config (Section 11)
+│       └── main.tf                 # IaC config (Section 16)
 │
 ├── tests/
 ├── scripts/
 │   ├── run_local.sh
 │   ├── deploy.sh
-│   └── health_check.sh            # Health verification (Section 11)
+│   └── health_check.sh            # Health verification (Section 16)
 ├── Dockerfile
 ├── docker-compose.yml
-├── .env.example                    # Environment template (Section 10)
-├── .gitignore                      # Git rules (Section 08)
+├── .env.example                    # Environment template (Section 11)
+├── .gitignore                      # Git rules (Section 02)
 ├── .github/workflows/ci.yml
 ├── pyproject.toml
 ├── uv.lock
@@ -105,20 +122,17 @@ practical-production-service/
 
 | Week | Focus |
 |------|-------|
-| 1 | Section 0 (uv) + Section 1 (Linux) — first half |
-| 2 | Section 1 (Linux) — second half + Section 2 (Networking) |
-| 3 | Section 3 (REST Design) + Section 4 (FastAPI) — first half |
-| 4 | Section 4 (FastAPI) — second half |
-| 5 | Section 5 (Docker) |
-| 6 | Section 6 (CI/CD) |
-| 7 | Section 7 (Monitoring) |
-| 8 | Section 8 (Git) + Section 9 (Databases) |
-| 9 | Section 10 (Security) + Section 11 (Cloud) |
-| 10 | Section 12 (Nginx) + Section 13 (Capstone) |
-| 11 | Section 14 (PostgreSQL) + Section 15 (Elasticsearch) |
-| 12 | Section 16 (RDF/SPARQL) + Section 17 (REST CRUD) |
-| 13 | Section 18 (Docker Debug) + Section 19 (Ansible) |
-| 14 | Section 20 (CI/CD Practice) — pipeline integration |
+| 1 | Section 0 (uv) + Section 1 (Linux) |
+| 2 | Section 2 (Git) + Section 3 (Networking) |
+| 3 | Section 4 (Database) + Section 5 (REST Design) |
+| 4 | Section 6 (FastAPI) + Section 7 (REST CRUD Labs) |
+| 5 | Section 8 (PostgreSQL) + Section 9 (Docker) |
+| 6 | Section 10 (Docker Debug) + Section 11 (Security) |
+| 7 | Section 12 (Nginx) + Section 13 (CI/CD) |
+| 8 | Section 14 (CI/CD Practice) + Section 15 (Monitoring) |
+| 9 | Section 16 (Cloud) + Section 17 (Ansible) |
+| 10 | Section 18 (Elasticsearch) + Section 19 (RDF/SPARQL) |
+| 11–14 | Section 20 (Capstone Project) — full integration build |
 
 ---
 
@@ -130,7 +144,7 @@ practical-production-service/
 - Docker + Docker Compose
 - Git
 - `curl`, `jq`, `ss`, `netstat` (standard Linux tools)
-- Ansible (`pip install ansible`) — for Section 19
+- Ansible (`pip install ansible`) — for Section 17
 
 ---
 

@@ -1,0 +1,42 @@
+# Exercise 3.E — OpenAPI Specification for practical-production-service
+# Guide: docs/curriculum/05-rest-api-design.md
+# TODO: Complete this OpenAPI spec
+
+openapi: "3.1.0"
+info:
+  title: Practical Production Service
+  version: "1.0.0"
+  description: ML prediction service
+
+paths:
+  /health:
+    get:
+      summary: Health check
+      responses:
+        "200":
+          description: Service is healthy
+          # TODO: Define response schema
+
+  /version:
+    get:
+      summary: Get service version
+      responses:
+        "200":
+          description: Version info
+          # TODO: Define response schema
+
+  /predict:
+    post:
+      summary: Make a prediction
+      requestBody:
+        # TODO: Define request body schema
+        content:
+          application/json:
+            schema: {}
+      responses:
+        "200":
+          description: Prediction result
+          # TODO: Define response schema
+        "422":
+          description: Validation error
+          # TODO: Define error schema
