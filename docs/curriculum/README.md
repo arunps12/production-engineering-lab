@@ -32,6 +32,7 @@
 | Section | Topic | File |
 |---------|-------|------|
 | 4 | Database Fundamentals | [04-database-fundamentals.md](04-database-fundamentals.md) |
+| 4b | SQL Mastery | [04b-sql-mastery.md](04b-sql-mastery.md) |
 | 5 | REST API Design | [05-rest-api-design.md](05-rest-api-design.md) |
 | 6 | FastAPI Professional Practice | [06-fastapi-professional.md](06-fastapi-professional.md) |
 | 7 | REST API CRUD Labs | [07-rest-api-crud-labs.md](07-rest-api-crud-labs.md) |
@@ -124,7 +125,7 @@ practical-production-service/
 |------|-------|
 | 1 | Section 0 (uv) + Section 1 (Linux) |
 | 2 | Section 2 (Git) + Section 3 (Networking) |
-| 3 | Section 4 (Database) + Section 5 (REST Design) |
+| 3 | Section 4 (Database) + Section 4b (SQL Mastery) + Section 5 (REST Design) |
 | 4 | Section 6 (FastAPI) + Section 7 (REST CRUD Labs) |
 | 5 | Section 8 (PostgreSQL) + Section 9 (Docker) |
 | 6 | Section 10 (Docker Debug) + Section 11 (Security) |
