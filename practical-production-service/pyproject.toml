@@ -2,8 +2,13 @@
 name = "appcore"
 version = "0.1.0"
 description = "Production-ready service for the bootcamp"
-requires-python = ">=3.11"
-dependencies = []
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "fastapi>=0.133.0",
+    "prometheus-client>=0.24.1",
+    "pydantic>=2.12.5",
+    "uvicorn>=0.41.0",
+]
 
 [project.scripts]
 appcore-serve = "appcore.cli:serve"
@@ -14,3 +19,9 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/appcore"]
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.1",
+    "pytest>=9.0.2",
+]
